@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: linear-gradient(to right,rgb(0, 0, 255),midnightblue);
+            text-align: center;
+            margin-top: 50px;
+        }
+        #container{
+            background: linear-gradient(to right,aqua,blue);
+            width: 70%;
+            margin: auto;
+            border-radius: 20px;
+            height: 85%;
+            line-break: anywhere;
+            padding: 50px;
+        }
+        textarea{
+            width: 80%;
+            height: 150px;
+            border-radius: 10px;
+            padding: 10px;
+            background: linear-gradient(170deg,blue,midnightblue);
+            backdrop-filter: blur(700px);
+            -webkit-background-clip: text;
+            color: transparent;
+            border: none;
+            font-size: 20px;
+            text-transform: capitalize;
+            outline: none;
+            border:1px white solid;
+        }
+        #box{
+            background: linear-gradient(170deg,blue,midnightblue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            backdrop-filter: blur(700px);
+            width: 82%;
+            height: 50px;
+            outline: none;
+            padding: 10px;
+            border: 1px white solid;
+            border-radius: 10px;
+            font-size: 30px;
+        }
+        ol{
+            list-style: none;
+            font-size: 30px;
+            background: linear-gradient(175deg,blue,midnightblue);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: left;
+            /* text-transform: capitalize; */
+        }
+        ol li {
+            text-transform: uppercase;
+            margin-left: 5%;
+        }
+         span{
+            /* right: 0; */
+            margin-left: 20%;
+            top: 5px;
+            font-weight: 900;
+            text-align: center;
+            border-radius: 50%;
+            cursor: pointer;
+            /* z-index: 1; */
+         }
+        
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    <textarea id="input"></textarea>
+    <br>
+    <button id="box">SAVE</button>
+    <ol id="saver">
+
+    </ol>
+    </div>
+    <script>
+        let input = document.getElementById("input")
+        let box = document.getElementById("saver")
+        document.getElementById("box").addEventListener("click",()=>{
+            if(input.value === ""){
+            alert("You must write a word !!!!!")
+            }
+            else{
+                let li = document.createElement("li")
+                li.id = "li"
+            li.innerHTML = input.value
+            box.appendChild(li)
+            let span = document.createElement("span")
+            span.innerHTML = "\u00d7"
+            li.appendChild(span)
+                let hr = document.createElement("div")
+                hr.id = "na"
+                let nma = document.createElement("hr")
+                nma.width = "100%"
+                box.appendChild(hr)
+                hr.append(nma)
+            }
+            input.value = ""
+            save()
+        })
+        saver.addEventListener("click",(e)=>{
+            if(e.target.tagName === "LI"){
+            e.target.classList.toggle("checked")
+                save()
+            }
+            else if(e.target.tagName === "SPAN"){
+             document.getElementById("na").remove()
+             e.target.parentElement.remove()
+                save()
+            }
+            navigator.vibrate(100,80)
+        },false)
+        function save(){
+        localStorage.setItem("data",box.innerHTML);
+        }
+        function show(){
+        document.getElementById("saver").innerHTML = localStorage.getItem("data");
+        }
+        show()
+
+    </script>
+</body>
+</html>
